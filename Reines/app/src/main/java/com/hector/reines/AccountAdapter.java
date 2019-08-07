@@ -1,10 +1,13 @@
 package com.hector.reines;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -12,6 +15,8 @@ import java.util.ArrayList;
 public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountViewHolder> {
 
     private ArrayList<Account> accountList;
+    int mRecentlyDeletedItemPos;
+    Account mRecentlyDeletedItem;
 
     public AccountAdapter(ArrayList<Account> accountList) {
         this.accountList = accountList;
@@ -40,6 +45,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
     public class AccountViewHolder extends RecyclerView.ViewHolder {
 
         private TextView txt_gameName, txt_uid, txt_genId, txt_passCode;
+        private Button delBtn;
 
         public AccountViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -47,6 +53,19 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
             txt_uid = itemView.findViewById(R.id.txt_uid);
             txt_genId = itemView.findViewById(R.id.txt_genID);
             txt_passCode = itemView.findViewById(R.id.txt_passCode);
+            delBtn = itemView.findViewById(R.id.deleteAcc);
+
+            delBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    removeItem(getAdapterPosition());
+                }
+            });
+        }
+
+        public void removeItem(int pos){
+            accountList.remove(pos);
+            notifyItemRemoved(pos);
         }
     }
 }
