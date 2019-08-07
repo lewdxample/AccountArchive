@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     String user_name;
     LinearLayout linear;
+    public static int aaid;
 
     private MaterialEditText input_genId, input_passCode, input_Uid;
     private Spinner input_gameName;
@@ -46,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mGetRef = mDatabase.child("archives").child("ver1");
-        mGetUser = mDatabase.child("users").child("0");
+        mGetRef = mDatabase.child("archives").child("ver"+aaid);
+        mGetUser = mDatabase.child("users").child(aaid+"");
 
         linear = findViewById(R.id.linear);
 
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
                 accountArrayList.clear();
 
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 //                    Log.e("data", "data : " +dataSnapshot1.getValue());
                     accountArrayList.add(new Account(
                             dataSnapshot1.child("acc_id").getValue().toString(),
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 user_name = dataSnapshot.child("name").getValue().toString();
-                Snackbar.make(linear, "Welcome back, " +user_name, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(linear, "Welcome back, " + user_name, Snackbar.LENGTH_LONG).show();
             }
 
             @Override
@@ -108,13 +109,13 @@ public class MainActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (input_Uid.length() == 0){
+                if (input_Uid.length() == 0) {
                     Toast.makeText(MainActivity.this, "UID is Empty!", Toast.LENGTH_SHORT).show();
-                } else if(input_genId.length() == 0){
+                } else if (input_genId.length() == 0) {
                     Toast.makeText(MainActivity.this, "Generated ID is Empty!", Toast.LENGTH_SHORT).show();
-                }else if (input_passCode.length() == 0){
+                } else if (input_passCode.length() == 0) {
                     Toast.makeText(MainActivity.this, "Pass Code is Empty!", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     addToDB();
                     input_Uid.setText("");
                     input_genId.setText("");
@@ -141,12 +142,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 2000);
     }
 
-    void addToDB(){
+    void addToDB() {
         Account account = new Account("", "", "", "", "");
         account.setAcc_id(mGetRef.push().getKey());
         account.setGame_name(input_gameName.getSelectedItem().toString());

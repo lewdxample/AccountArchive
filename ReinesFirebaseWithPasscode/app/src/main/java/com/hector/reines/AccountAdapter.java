@@ -27,6 +27,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
     public AccountAdapter(ArrayList<Account> accountList) {
         this.accountList = accountList;
     }
+
     @NonNull
     @Override
     public AccountAdapter.AccountViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,9 +39,9 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
     @Override
     public void onBindViewHolder(@NonNull AccountAdapter.AccountViewHolder holder, int pos) {
         holder.txt_gameName.setText(accountList.get(pos).getGame_name());
-        holder.txt_uid.setText("UID : " +accountList.get(pos).getUid());
-        holder.txt_genId.setText("Generated ID : " +accountList.get(pos).getGen_id());
-        holder.txt_passCode.setText("Pass Code : " +accountList.get(pos).getPass_code());
+        holder.txt_uid.setText("UID : " + accountList.get(pos).getUid());
+        holder.txt_genId.setText("Generated ID : " + accountList.get(pos).getGen_id());
+        holder.txt_passCode.setText("Pass Code : " + accountList.get(pos).getPass_code());
     }
 
     @Override
@@ -72,7 +73,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
             });
         }
 
-        public void removeItem(int pos){
+        public void removeItem(int pos) {
             mGetRef = FirebaseDatabase.getInstance().getReference().child("archives").child("ver1");
             mGetRef.child(accountList.get(pos).getAcc_id()).removeValue();
 //            accountList.remove(pos);

@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.hector.reines.MainActivity.aaid;
+
 public class FirstActivity extends AppCompatActivity {
 
     DatabaseReference mDatabase;
@@ -58,6 +60,7 @@ public class FirstActivity extends AppCompatActivity {
             if(Integer.parseInt(pin) == savedPasscode){
                 startActivity(new Intent(FirstActivity.this, MainActivity.class));
                 finish();
+                aaid = 0;
             }else {
                 Toast.makeText(FirstActivity.this, "Pin Invalid!", Toast.LENGTH_SHORT).show();
             }
