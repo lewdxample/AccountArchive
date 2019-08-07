@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 accountArrayList.clear();
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    Log.e("data", "data : " +dataSnapshot1.getValue());
+//                    Log.e("data", "data : " +dataSnapshot1.getValue());
                     accountArrayList.add(new Account(
                             dataSnapshot1.child("acc_id").getValue().toString(),
                             dataSnapshot1.child("game_name").getValue().toString(),
