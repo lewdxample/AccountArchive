@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "831248388517",
+    "firebase_url": "https://reinesarchive.firebaseio.com",
+    "project_id": "reinesarchive",
+    "storage_bucket": "reinesarchive.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831248388517:android:bea14d97f9acf1c8",
+        "android_client_info": {
+          "package_name": "com.hector.reines"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831248388517-ufj5utmhhol2tbgmgl6jr2m3u5l49bte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbtOMgtT4upH853ASv3rlSkXLhSCR3TeA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831248388517-ufj5utmhhol2tbgmgl6jr2m3u5l49bte.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
