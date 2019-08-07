@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Reines no Archive</string>
+
+    <string-array name="game_name">
+        <item>FGO JP</item>
+        <item>FGO USA</item>
+    </string-array>
+</resources>
