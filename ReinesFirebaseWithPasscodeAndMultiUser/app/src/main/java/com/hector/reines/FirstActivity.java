@@ -1,11 +1,9 @@
 package com.hector.reines;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.andrognito.pinlockview.IndicatorDots;
 import com.andrognito.pinlockview.PinLockListener;
@@ -29,9 +27,6 @@ public class FirstActivity extends AppCompatActivity {
     List<Integer> savedPasscodes = new ArrayList<>();
     List<Integer> userKey = new ArrayList<>();
 
-    int savedPasscode;
-
-
     PinLockView pinLockView;
     IndicatorDots indicatorDots;
 
@@ -50,10 +45,7 @@ public class FirstActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     savedPasscodes.add(Integer.valueOf(dataSnapshot1.child("password").getValue().toString()));
                     userKey.add(Integer.valueOf(dataSnapshot1.getKey()));
-
                 }
-//                savedPasscode = Integer.parseInt(dataSnapshot.child("password").getValue().toString());
-                    Log.e("passcoe", "saved: " +userKey);
             }
 
             @Override
@@ -71,7 +63,6 @@ public class FirstActivity extends AppCompatActivity {
     private PinLockListener pinLockListener = new PinLockListener() {
         @Override
         public void onComplete(String pin) {
-//            Toast.makeText(FirstActivity.this, pin, Toast.LENGTH_SHORT).show();
             for (int j = 0; j < savedPasscodes.size(); j++){
                 if(Integer.parseInt(pin) == savedPasscodes.get(j)){
                     startActivity(new Intent(FirstActivity.this, MainActivity.class));
@@ -79,12 +70,11 @@ public class FirstActivity extends AppCompatActivity {
                     aaid = userKey.get(j);
                 }
             }
-
         }
 
         @Override
         public void onEmpty() {
-//            Toast.makeText(FirstActivity.this, "Pin Empty!", Toast.LENGTH_SHORT).show();
+
         }
 
         @Override

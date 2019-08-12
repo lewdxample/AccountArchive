@@ -5,4 +5,5 @@
         <item>FGO JP</item>
         <item>FGO USA</item>
     </string-array>
+    <string name="title_activity_option">OptionActivity</string>
 </resources>
