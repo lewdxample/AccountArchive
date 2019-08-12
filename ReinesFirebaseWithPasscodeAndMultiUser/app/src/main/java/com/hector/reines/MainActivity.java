@@ -1,5 +1,6 @@
 package com.hector.reines;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -7,12 +8,15 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private Spinner input_gameName;
     private Button saveBtn;
 
+    private Toolbar main_toolbar;
+
     private RecyclerView accountRecycler;
     private AccountAdapter adapter;
     private ArrayList<Account> accountArrayList;
@@ -51,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
         mGetUser = mDatabase.child("users").child(aaid + "");
 
         linear = findViewById(R.id.linear);
+
+        main_toolbar = findViewById(R.id.main_toolbar);
+        main_toolbar.setTitle("Reines no Archives");
+        setSupportActionBar(main_toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         input_Uid = findViewById(R.id.materialEditText0);
         input_genId = findViewById(R.id.materialEditText);
@@ -144,6 +156,24 @@ public class MainActivity extends AppCompatActivity {
                 doubleBackToExitPressedOnce = false;
             }
         }, 2000);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.option_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.option_menu) {
+            Intent myIntent = new Intent(MainActivity.this, OptionActivity.class);
+            startActivity(myIntent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     void addToDB() {
